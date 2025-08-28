@@ -1,0 +1,24 @@
+package com.chiragrathava.utils;
+
+import java.io.FileInputStream;
+import java.util.Properties;
+
+public class ConfigReader {
+    private static Properties properties;
+    private static final String CONFIG_FILE_PATH = "src/test/resources/config.properties";
+
+    static {
+        try {
+            properties = new Properties();
+            FileInputStream input = new FileInputStream(CONFIG_FILE_PATH);
+            properties.load(input);
+            input.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String getProperty(String key) {
+        return properties.getProperty(key);
+    }
+}
